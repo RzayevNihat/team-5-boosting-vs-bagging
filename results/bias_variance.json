@@ -1,0 +1,78 @@
+{
+  "config": {
+    "n_rounds": 100,
+    "n_estimators": 100,
+    "test_size": 0.5,
+    "random_state": 42,
+    "n_jobs": 1,
+    "data_dir": "data",
+    "output_dir": "results"
+  },
+  "dataset": {
+    "name": "Breast Cancer Wisconsin (WDBC)",
+    "task": "binary",
+    "source": "data\\wdbc.data",
+    "notes": "Downloaded UCI WDBC file; label 1 is malignant, label 0 is benign.",
+    "n_samples": 569,
+    "n_features": 30
+  },
+  "models": {
+    "Decision stump (ours)": {
+      "expected_loss": 0.08442105263157895,
+      "bias_squared": 0.07368421052631578,
+      "variance": 0.05340350877192983,
+      "per_class": {
+        "0": {
+          "expected_loss": 0.028547486033519552,
+          "bias": 0.0,
+          "bias_squared": 0.0,
+          "variance": 0.028547486033519552
+        },
+        "1": {
+          "expected_loss": 0.17877358490566037,
+          "bias": 0.19811320754716982,
+          "bias_squared": 0.19811320754716982,
+          "variance": 0.09537735849056604
+        }
+      }
+    },
+    "AdaBoost (ours)": {
+      "expected_loss": 0.032771929824561404,
+      "bias_squared": 0.02456140350877193,
+      "variance": 0.019859649122807018,
+      "per_class": {
+        "0": {
+          "expected_loss": 0.008435754189944134,
+          "bias": 0.0,
+          "bias_squared": 0.0,
+          "variance": 0.008435754189944134
+        },
+        "1": {
+          "expected_loss": 0.07386792452830189,
+          "bias": 0.0660377358490566,
+          "bias_squared": 0.0660377358490566,
+          "variance": 0.03915094339622641
+        }
+      }
+    },
+    "Random Forest (sklearn ref)": {
+      "expected_loss": 0.04126315789473684,
+      "bias_squared": 0.031578947368421054,
+      "variance": 0.02168421052631579,
+      "per_class": {
+        "0": {
+          "expected_loss": 0.01441340782122905,
+          "bias": 0.0111731843575419,
+          "bias_squared": 0.0111731843575419,
+          "variance": 0.010391061452513967
+        },
+        "1": {
+          "expected_loss": 0.08660377358490566,
+          "bias": 0.0660377358490566,
+          "bias_squared": 0.0660377358490566,
+          "variance": 0.040754716981132075
+        }
+      }
+    }
+  }
+}

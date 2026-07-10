@@ -1,0 +1,609 @@
+{
+  "config": {
+    "datasets": [
+      "wdbc",
+      "adult",
+      "covertype"
+    ],
+    "n_splits": 5,
+    "n_estimators": 100,
+    "learning_rate": 1.0,
+    "random_state": 42,
+    "n_jobs": 1,
+    "confidence_level": 0.95,
+    "alpha": 0.05,
+    "adult_max_samples": 5000,
+    "covertype_max_samples": 5000,
+    "data_dir": "data",
+    "output_dir": "results"
+  },
+  "datasets": {
+    "Breast Cancer Wisconsin (WDBC)": {
+      "name": "Breast Cancer Wisconsin (WDBC)",
+      "task": "binary",
+      "source": "data\\wdbc.data",
+      "notes": "Downloaded UCI WDBC file; label 1 is malignant, label 0 is benign.",
+      "n_samples": 569,
+      "n_features": 30
+    },
+    "Adult Income": {
+      "name": "Adult Income",
+      "task": "binary_imbalanced",
+      "source": "data\\adult.data; data\\adult.test",
+      "notes": "Downloaded UCI Adult files; dropped rows with '?'. Rows before cleaning: 48842; rows used: 5000. Stratified sample cap: 5000.",
+      "n_samples": 5000,
+      "n_features": 104
+    },
+    "Covertype subset": {
+      "name": "Covertype subset",
+      "task": "multiclass",
+      "source": "data\\covtype.data",
+      "notes": "Downloaded UCI Covertype file; source rows: 581012; rows used: 5000. Stratified sample cap: 5000.",
+      "n_samples": 5000,
+      "n_features": 54
+    }
+  },
+  "summary": {
+    "Breast Cancer Wisconsin (WDBC)": {
+      "AdaBoost (ours)": {
+        "accuracy": {
+          "mean": 0.9666200900481291,
+          "std": 0.019982913402529022,
+          "ci_low": 0.9418080258969853,
+          "ci_high": 0.9914321541992729
+        },
+        "macro_precision": {
+          "mean": 0.9682361977361976,
+          "std": 0.019623297283488137,
+          "ci_low": 0.9438706559732407,
+          "ci_high": 0.9926017394991545
+        },
+        "macro_recall": {
+          "mean": 0.9610073879972341,
+          "std": 0.024678503534532173,
+          "ci_low": 0.9303649786288611,
+          "ci_high": 0.991649797365607
+        },
+        "macro_f1": {
+          "mean": 0.9639401028579357,
+          "std": 0.02170800437488481,
+          "ci_low": 0.9369860553527914,
+          "ci_high": 0.99089415036308
+        },
+        "roc_auc": {
+          "mean": 0.9933964250619999,
+          "std": 0.006942257941113389,
+          "ci_low": 0.9847764733102752,
+          "ci_high": 1.0
+        }
+      },
+      "Single tree (sklearn reference only)": {
+        "accuracy": {
+          "mean": 0.9209284272628473,
+          "std": 0.020507571659207056,
+          "ci_low": 0.8954649138430261,
+          "ci_high": 0.9463919406826685
+        },
+        "macro_precision": {
+          "mean": 0.9191036758876947,
+          "std": 0.017573661497863737,
+          "ci_low": 0.8972830930891776,
+          "ci_high": 0.9409242586862118
+        },
+        "macro_recall": {
+          "mean": 0.9141006244183447,
+          "std": 0.029290151304625638,
+          "ci_low": 0.87773209804145,
+          "ci_high": 0.9504691507952394
+        },
+        "macro_f1": {
+          "mean": 0.9148392906346272,
+          "std": 0.02342645865018857,
+          "ci_low": 0.8857515003232789,
+          "ci_high": 0.9439270809459755
+        },
+        "roc_auc": {
+          "mean": 0.9141006244183447,
+          "std": 0.02929015130462557,
+          "ci_low": 0.8777320980414501,
+          "ci_high": 0.9504691507952393
+        }
+      },
+      "Random Forest, depth-1 (sklearn reference only)": {
+        "accuracy": {
+          "mean": 0.9191895668374477,
+          "std": 0.02860325220209368,
+          "ci_low": 0.8836739383465654,
+          "ci_high": 0.95470519532833
+        },
+        "macro_precision": {
+          "mean": 0.928087376501398,
+          "std": 0.02098247999236413,
+          "ci_low": 0.9020341865018487,
+          "ci_high": 0.9541405665009474
+        },
+        "macro_recall": {
+          "mean": 0.9030941462729867,
+          "std": 0.042940938472073815,
+          "ci_low": 0.8497759289231297,
+          "ci_high": 0.9564123636228437
+        },
+        "macro_f1": {
+          "mean": 0.9105731983489053,
+          "std": 0.034061561636882176,
+          "ci_low": 0.8682801835417902,
+          "ci_high": 0.9528662131560204
+        },
+        "roc_auc": {
+          "mean": 0.9829617021682203,
+          "std": 0.007385594196234485,
+          "ci_low": 0.9737912757494133,
+          "ci_high": 0.9921321285870274
+        }
+      },
+      "Random Forest, full (sklearn reference only)": {
+        "accuracy": {
+          "mean": 0.956078248719143,
+          "std": 0.015149179928310996,
+          "ci_low": 0.9372680573998482,
+          "ci_high": 0.9748884400384379
+        },
+        "macro_precision": {
+          "mean": 0.9578795349903622,
+          "std": 0.013322025473042707,
+          "ci_low": 0.9413380555773315,
+          "ci_high": 0.9744210144033928
+        },
+        "macro_recall": {
+          "mean": 0.949749920712908,
+          "std": 0.02201774689852982,
+          "ci_low": 0.9224112770674409,
+          "ci_high": 0.9770885643583751
+        },
+        "macro_f1": {
+          "mean": 0.9525402422034673,
+          "std": 0.016945979543207243,
+          "ci_low": 0.9314990294903694,
+          "ci_high": 0.9735814549165652
+        },
+        "roc_auc": {
+          "mean": 0.9901663750808035,
+          "std": 0.008194206500083038,
+          "ci_low": 0.9799919238758031,
+          "ci_high": 1.0
+        }
+      }
+    },
+    "Adult Income": {
+      "AdaBoost (ours)": {
+        "accuracy": {
+          "mean": 0.8427999999999999,
+          "std": 0.014889593681494482,
+          "ci_low": 0.8243121275778059,
+          "ci_high": 0.8612878724221938
+        },
+        "macro_precision": {
+          "mean": 0.8059409975638798,
+          "std": 0.026481196467219997,
+          "ci_low": 0.773060249281172,
+          "ci_high": 0.8388217458465876
+        },
+        "macro_recall": {
+          "mean": 0.745576932436163,
+          "std": 0.019112838481475294,
+          "ci_low": 0.7218452089902316,
+          "ci_high": 0.7693086558820943
+        },
+        "macro_f1": {
+          "mean": 0.7676357426348493,
+          "std": 0.021588607643510335,
+          "ci_low": 0.740829945752556,
+          "ci_high": 0.7944415395171427
+        },
+        "roc_auc": {
+          "mean": 0.896660814446747,
+          "std": 0.00882203156164765,
+          "ci_low": 0.8857068154656317,
+          "ci_high": 0.9076148134278622
+        }
+      },
+      "Single tree (sklearn reference only)": {
+        "accuracy": {
+          "mean": 0.7968000000000001,
+          "std": 0.00920326029187484,
+          "ci_low": 0.7853726430294808,
+          "ci_high": 0.8082273569705193
+        },
+        "macro_precision": {
+          "mean": 0.7277454065358977,
+          "std": 0.0119391976320328,
+          "ci_low": 0.7129209346687629,
+          "ci_high": 0.7425698784030325
+        },
+        "macro_recall": {
+          "mean": 0.7266531378093007,
+          "std": 0.011617966368120113,
+          "ci_low": 0.7122275272376639,
+          "ci_high": 0.7410787483809376
+        },
+        "macro_f1": {
+          "mean": 0.7269635142730945,
+          "std": 0.011011533774329643,
+          "ci_low": 0.7132908892205045,
+          "ci_high": 0.7406361393256844
+        },
+        "roc_auc": {
+          "mean": 0.7266531378093007,
+          "std": 0.011617966368120115,
+          "ci_low": 0.7122275272376638,
+          "ci_high": 0.7410787483809377
+        }
+      },
+      "Random Forest, depth-1 (sklearn reference only)": {
+        "accuracy": {
+          "mean": 0.7521999999999999,
+          "std": 0.00044721359549995833,
+          "ci_low": 0.7516447109789604,
+          "ci_high": 0.7527552890210394
+        },
+        "macro_precision": {
+          "mean": 0.37609999999999993,
+          "std": 0.00022360679774997917,
+          "ci_low": 0.3758223554894802,
+          "ci_high": 0.3763776445105197
+        },
+        "macro_recall": {
+          "mean": 0.5,
+          "std": 0.0,
+          "ci_low": 0.5,
+          "ci_high": 0.5
+        },
+        "macro_f1": {
+          "mean": 0.4292888642301391,
+          "std": 0.00014561260783862426,
+          "ci_low": 0.42910806229730136,
+          "ci_high": 0.4294696661629769
+        },
+        "roc_auc": {
+          "mean": 0.8724494155006163,
+          "std": 0.008568169397656984,
+          "ci_low": 0.8618106280290344,
+          "ci_high": 0.8830882029721981
+        }
+      },
+      "Random Forest, full (sklearn reference only)": {
+        "accuracy": {
+          "mean": 0.8366,
+          "std": 0.00944986772394197,
+          "ci_low": 0.8248664394593935,
+          "ci_high": 0.8483335605406065
+        },
+        "macro_precision": {
+          "mean": 0.7894288897600911,
+          "std": 0.014955421865086761,
+          "ci_low": 0.7708592808522634,
+          "ci_high": 0.8079984986679187
+        },
+        "macro_recall": {
+          "mean": 0.7490484701130937,
+          "std": 0.014223561580861827,
+          "ci_low": 0.7313875857719033,
+          "ci_high": 0.7667093544542841
+        },
+        "macro_f1": {
+          "mean": 0.7651539772756174,
+          "std": 0.014082260405478312,
+          "ci_low": 0.7476685415168046,
+          "ci_high": 0.7826394130344302
+        },
+        "roc_auc": {
+          "mean": 0.8875467853191429,
+          "std": 0.005010023499983944,
+          "ci_low": 0.881326019509058,
+          "ci_high": 0.8937675511292278
+        }
+      }
+    },
+    "Covertype subset": {
+      "AdaBoost (ours)": {
+        "accuracy": {
+          "mean": 0.6132,
+          "std": 0.01762668431668306,
+          "ci_low": 0.5913135806762717,
+          "ci_high": 0.6350864193237282
+        },
+        "macro_precision": {
+          "mean": 0.31170744033937414,
+          "std": 0.04312049004698335,
+          "ci_low": 0.25816628026313115,
+          "ci_high": 0.36524860041561713
+        },
+        "macro_recall": {
+          "mean": 0.31438154533513085,
+          "std": 0.021661094465622775,
+          "ci_low": 0.28748574417547623,
+          "ci_high": 0.34127734649478547
+        },
+        "macro_f1": {
+          "mean": 0.3087089962867545,
+          "std": 0.032310908944697646,
+          "ci_low": 0.2685897039008835,
+          "ci_high": 0.34882828867262555
+        },
+        "roc_auc": {
+          "mean": 0.8511025034984527,
+          "std": 0.012966577014806328,
+          "ci_low": 0.8350023716392313,
+          "ci_high": 0.8672026353576742
+        }
+      },
+      "Single tree (sklearn reference only)": {
+        "accuracy": {
+          "mean": 0.6768000000000001,
+          "std": 0.012029131306956441,
+          "ci_low": 0.6618638607264865,
+          "ci_high": 0.6917361392735136
+        },
+        "macro_precision": {
+          "mean": 0.5715271092499283,
+          "std": 0.04624339638195749,
+          "ci_low": 0.5141083488077856,
+          "ci_high": 0.6289458696920711
+        },
+        "macro_recall": {
+          "mean": 0.5577769163305729,
+          "std": 0.03724651137360668,
+          "ci_low": 0.5115292640992785,
+          "ci_high": 0.6040245685618674
+        },
+        "macro_f1": {
+          "mean": 0.5605113623595637,
+          "std": 0.03493039484386794,
+          "ci_low": 0.5171395486388904,
+          "ci_high": 0.6038831760802369
+        },
+        "roc_auc": {
+          "mean": 0.7416998768569759,
+          "std": 0.02012854707579092,
+          "ci_low": 0.7167069846168167,
+          "ci_high": 0.7666927690971351
+        }
+      },
+      "Random Forest, depth-1 (sklearn reference only)": {
+        "accuracy": {
+          "mean": 0.4952,
+          "std": 0.008814760348415612,
+          "ci_low": 0.48425502942257825,
+          "ci_high": 0.5061449705774217
+        },
+        "macro_precision": {
+          "mean": 0.13231466914854273,
+          "std": 0.05724291534221405,
+          "ci_low": 0.06123820201588964,
+          "ci_high": 0.20339113628119582
+        },
+        "macro_recall": {
+          "mean": 0.14607511701669731,
+          "std": 0.003972001313333328,
+          "ci_low": 0.14114322598511325,
+          "ci_high": 0.15100700804828138
+        },
+        "macro_f1": {
+          "mean": 0.10233286642921273,
+          "std": 0.009834180260095532,
+          "ci_low": 0.09012211884840599,
+          "ci_high": 0.11454361401001947
+        },
+        "roc_auc": {
+          "mean": 0.8914593059378071,
+          "std": 0.007315222849972532,
+          "ci_low": 0.8823762570861586,
+          "ci_high": 0.9005423547894555
+        }
+      },
+      "Random Forest, full (sklearn reference only)": {
+        "accuracy": {
+          "mean": 0.7638,
+          "std": 0.015417522498767447,
+          "ci_low": 0.7446566173717839,
+          "ci_high": 0.7829433826282162
+        },
+        "macro_precision": {
+          "mean": 0.7685284253711641,
+          "std": 0.06810826158552927,
+          "ci_low": 0.683960848980168,
+          "ci_high": 0.8530960017621602
+        },
+        "macro_recall": {
+          "mean": 0.5193987829130574,
+          "std": 0.039774530500020985,
+          "ci_low": 0.4700121803457238,
+          "ci_high": 0.568785385480391
+        },
+        "macro_f1": {
+          "mean": 0.5693508954225714,
+          "std": 0.04556300144315587,
+          "ci_low": 0.5127769568804986,
+          "ci_high": 0.6259248339646443
+        },
+        "roc_auc": {
+          "mean": 0.9486316062566826,
+          "std": 0.006131021826685994,
+          "ci_low": 0.9410189371822851,
+          "ci_high": 0.9562442753310801
+        }
+      }
+    }
+  },
+  "experiment_status": {
+    "Breast Cancer Wisconsin (WDBC)": {
+      "status": "partial",
+      "missing_required_custom_models": [
+        "src.trees.decision_tree.DecisionTree",
+        "src.bagging.random_forest.RandomForestClassifier"
+      ],
+      "reference_only_models_are_not_project_implementations": true
+    },
+    "Adult Income": {
+      "status": "partial",
+      "missing_required_custom_models": [
+        "src.trees.decision_tree.DecisionTree",
+        "src.bagging.random_forest.RandomForestClassifier"
+      ],
+      "reference_only_models_are_not_project_implementations": true
+    },
+    "Covertype subset": {
+      "status": "partial",
+      "missing_required_custom_models": [
+        "src.trees.decision_tree.DecisionTree",
+        "src.bagging.random_forest.RandomForestClassifier"
+      ],
+      "reference_only_models_are_not_project_implementations": true
+    }
+  },
+  "model_metadata": {
+    "Breast Cancer Wisconsin (WDBC)": {
+      "AdaBoost (ours)": {
+        "role": "project_implementation",
+        "note": "From-scratch SAMME AdaBoost implemented in src/boosting/adaboost.py."
+      },
+      "Single tree (sklearn reference only)": {
+        "role": "reference_only",
+        "note": "Reference baseline only; not a substitute for the required from-scratch DecisionTree."
+      },
+      "Random Forest, depth-1 (sklearn reference only)": {
+        "role": "reference_only",
+        "note": "Reference baseline only; uses depth-1 sklearn trees to match AdaBoost weak-learner capacity."
+      },
+      "Random Forest, full (sklearn reference only)": {
+        "role": "reference_only",
+        "note": "Reference baseline only; not a substitute for the required from-scratch RandomForest."
+      }
+    },
+    "Adult Income": {
+      "AdaBoost (ours)": {
+        "role": "project_implementation",
+        "note": "From-scratch SAMME AdaBoost implemented in src/boosting/adaboost.py."
+      },
+      "Single tree (sklearn reference only)": {
+        "role": "reference_only",
+        "note": "Reference baseline only; not a substitute for the required from-scratch DecisionTree."
+      },
+      "Random Forest, depth-1 (sklearn reference only)": {
+        "role": "reference_only",
+        "note": "Reference baseline only; uses depth-1 sklearn trees to match AdaBoost weak-learner capacity."
+      },
+      "Random Forest, full (sklearn reference only)": {
+        "role": "reference_only",
+        "note": "Reference baseline only; not a substitute for the required from-scratch RandomForest."
+      }
+    },
+    "Covertype subset": {
+      "AdaBoost (ours)": {
+        "role": "project_implementation",
+        "note": "From-scratch SAMME AdaBoost implemented in src/boosting/adaboost.py."
+      },
+      "Single tree (sklearn reference only)": {
+        "role": "reference_only",
+        "note": "Reference baseline only; not a substitute for the required from-scratch DecisionTree."
+      },
+      "Random Forest, depth-1 (sklearn reference only)": {
+        "role": "reference_only",
+        "note": "Reference baseline only; uses depth-1 sklearn trees to match AdaBoost weak-learner capacity."
+      },
+      "Random Forest, full (sklearn reference only)": {
+        "role": "reference_only",
+        "note": "Reference baseline only; not a substitute for the required from-scratch RandomForest."
+      }
+    }
+  },
+  "significance_tests": {
+    "Breast Cancer Wisconsin (WDBC)": [
+      {
+        "model": "Single tree (sklearn reference only)",
+        "n_pairs": 5,
+        "mean_difference_reference_minus_model": 0.04910081222330853,
+        "t_statistic": 5.515065090168107,
+        "p_value": 0.005275779304039749,
+        "p_value_holm": 0.010551558608079497,
+        "significant": true
+      },
+      {
+        "model": "Random Forest, depth-1 (sklearn reference only)",
+        "n_pairs": 5,
+        "mean_difference_reference_minus_model": 0.05336690450903052,
+        "t_statistic": 8.830937677151901,
+        "p_value": 0.0009075714539174084,
+        "p_value_holm": 0.002722714361752225,
+        "significant": true
+      },
+      {
+        "model": "Random Forest, full (sklearn reference only)",
+        "n_pairs": 5,
+        "mean_difference_reference_minus_model": 0.011399860654468564,
+        "t_statistic": 1.8610135358714615,
+        "p_value": 0.13624050082769057,
+        "p_value_holm": 0.13624050082769057,
+        "significant": false
+      }
+    ],
+    "Adult Income": [
+      {
+        "model": "Single tree (sklearn reference only)",
+        "n_pairs": 5,
+        "mean_difference_reference_minus_model": 0.04067222836175508,
+        "t_statistic": 5.683310347587904,
+        "p_value": 0.004731865476646868,
+        "p_value_holm": 0.009463730953293736,
+        "significant": true
+      },
+      {
+        "model": "Random Forest, depth-1 (sklearn reference only)",
+        "n_pairs": 5,
+        "mean_difference_reference_minus_model": 0.33834687840471045,
+        "t_statistic": 34.90231676294644,
+        "p_value": 4.021251198638184e-06,
+        "p_value_holm": 1.2063753595914552e-05,
+        "significant": true
+      },
+      {
+        "model": "Random Forest, full (sklearn reference only)",
+        "n_pairs": 5,
+        "mean_difference_reference_minus_model": 0.002481765359231991,
+        "t_statistic": 0.4891808577884964,
+        "p_value": 0.6503252515318241,
+        "p_value_holm": 0.6503252515318241,
+        "significant": false
+      }
+    ],
+    "Covertype subset": [
+      {
+        "model": "Single tree (sklearn reference only)",
+        "n_pairs": 5,
+        "mean_difference_reference_minus_model": -0.25180236607280915,
+        "t_statistic": -9.69140025180965,
+        "p_value": 0.0006344406532965705,
+        "p_value_holm": 0.001268881306593141,
+        "significant": true
+      },
+      {
+        "model": "Random Forest, depth-1 (sklearn reference only)",
+        "n_pairs": 5,
+        "mean_difference_reference_minus_model": 0.2063761298575418,
+        "t_statistic": 15.98661361291612,
+        "p_value": 8.951189185736699e-05,
+        "p_value_holm": 0.00026853567557210095,
+        "significant": true
+      },
+      {
+        "model": "Random Forest, full (sklearn reference only)",
+        "n_pairs": 5,
+        "mean_difference_reference_minus_model": -0.26064189913581676,
+        "t_statistic": -9.427352960100855,
+        "p_value": 0.0007058258147849428,
+        "p_value_holm": 0.001268881306593141,
+        "significant": true
+      }
+    ]
+  }
+}

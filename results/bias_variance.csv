@@ -1,0 +1,4 @@
+dataset,model,expected_loss,bias_squared,variance
+Breast Cancer Wisconsin (WDBC),Decision stump (ours),0.08442105263157895,0.07368421052631578,0.05340350877192983
+Breast Cancer Wisconsin (WDBC),AdaBoost (ours),0.032771929824561404,0.02456140350877193,0.019859649122807018
+Breast Cancer Wisconsin (WDBC),Random Forest (sklearn ref),0.04126315789473684,0.031578947368421054,0.02168421052631579
