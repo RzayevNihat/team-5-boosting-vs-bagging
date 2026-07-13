@@ -216,3 +216,40 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+
+#############################
+
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*.pyo
+.mypy_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Experiment outputs (keep the folder tracked via .gitkeep, ignore generated CSVs)
+data/results/*.csv
+
+# LaTeX build artifacts
+report/*.aux
+report/*.log
+report/*.out
+report/*.toc
+report/*.pdf
+
+# OS/editor cruft
+.DS_Store
+.vscode/
+.idea/
+
+# Packaging
+*.egg-info/
+dist/
+build/
