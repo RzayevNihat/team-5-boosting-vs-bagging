@@ -10,3 +10,7 @@ class StandardScaler:
     def __init__(self):
         self.mean_ = None
         self.scale_ = None
+
+    def fit(self, X):
+        """Compute mean and standard deviation."""
+        pass
