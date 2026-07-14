@@ -12,5 +12,12 @@ class StandardScaler:
         self.scale_ = None
 
     def fit(self, X):
-        """Compute mean and standard deviation."""
-        pass
+       """
+       Compute the mean and standard deviation of each feature.
+       """
+       X = np.asarray(X, dtype=float)
+
+       self.mean_ = np.mean(X, axis=0)
+       self.scale_ = np.std(X, axis=0)
+
+       return self
