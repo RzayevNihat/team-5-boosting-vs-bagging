@@ -68,3 +68,32 @@ class PCA:
             )
 
         return self
+    
+    def transform(self, X):
+            """
+            Project data onto the fitted principal components.
+            """
+            if self.mean_ is None or self.components_ is None:
+                raise RuntimeError(
+                    "PCA must be fitted before transform."
+                )
+
+            X = np.asarray(X, dtype=float)
+
+            if X.ndim != 2:
+                raise ValueError("X must be a two-dimensional array.")
+
+            if X.shape[1] != self.mean_.shape[0]:
+                raise ValueError(
+                    "X must have the same number of features as the fitted data."
+                )
+
+            X_centered = X - self.mean_
+
+            return X_centered @ self.components_.T
+
+    def fit_transform(self, X):
+            """
+            Fit PCA and return the projected data.
+            """
+            return self.fit(X).transform(X)
