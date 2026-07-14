@@ -4,6 +4,8 @@ Preprocessing utilities for the project.
 
 import numpy as np
 
+
+
 class StandardScaler:
     """Standardize features using mean and standard deviation."""
 
@@ -46,3 +48,11 @@ class StandardScaler:
             )
 
         return (X - self.mean_) / self.scale_
+    
+
+    def fit_transform(self, X):
+        """
+        Fit the scaler and return the transformed data.
+        """
+        return self.fit(X).transform(X)
+    
