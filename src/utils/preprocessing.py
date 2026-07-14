@@ -21,3 +21,7 @@ class StandardScaler:
        self.scale_ = np.std(X, axis=0)
 
        return self
+    
+    def transform(self, X):
+       """Scale features using the fitted statistics."""
+       pass
