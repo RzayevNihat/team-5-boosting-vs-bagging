@@ -12,18 +12,37 @@ class StandardScaler:
         self.scale_ = None
 
     def fit(self, X):
-       """
-       Compute the mean and standard deviation of each feature.
-       """
-       X = np.asarray(X, dtype=float)
+        """
+        Compute the mean and standard deviation of each feature.
+        """
+        X = np.asarray(X, dtype=float)
 
-       self.mean_ = np.mean(X, axis=0)
-       self.scale_ = np.std(X, axis=0)
+        if X.ndim != 2:
+            raise ValueError("X must be a two-dimensional array.")
 
-       return self
+        self.mean_ = np.mean(X, axis=0)
+        self.scale_ = np.std(X, axis=0)
+
+        # Prevent division by zero for constant features.
+        self.scale_ = np.where(self.scale_ == 0, 1.0, self.scale_)
+
+        return self
     
     def transform(self, X):
-       """Scale features using the fitted statistics."""
-       X = np.asarray(X, dtype=float)
+        """Scale features using the fitted statistics."""
+        if self.mean_ is None or self.scale_ is None:
+            raise RuntimeError(
+                "StandardScaler must be fitted before transform."
+            )
 
-       return (X - self.mean_) / self.scale_
+        X = np.asarray(X, dtype=float)
+
+        if X.ndim != 2:
+            raise ValueError("X must be a two-dimensional array.")
+
+        if X.shape[1] != self.mean_.shape[0]:
+            raise ValueError(
+                "X must have the same number of features as the fitted data."
+            )
+
+        return (X - self.mean_) / self.scale_
