@@ -24,4 +24,6 @@ class StandardScaler:
     
     def transform(self, X):
        """Scale features using the fitted statistics."""
-       pass
+       X = np.asarray(X, dtype=float)
+
+       return (X - self.mean_) / self.scale_
